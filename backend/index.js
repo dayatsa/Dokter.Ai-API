@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const diseasesRoutes = require('./routes/diseasesRoutes');
 
 const app = express();
-const PORT = 5000;
+const PORT = 3000;
 
 app.use(bodyParser.json());
 app.use('/diseases',diseasesRoutes);

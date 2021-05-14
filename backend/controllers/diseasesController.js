@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('../private_key/key.json');
+const serviceAccount = require('../private_key/key_day.json');
 
 dataFormat = [
     {
