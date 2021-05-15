@@ -17,6 +17,19 @@ dataFormat = [
     }
 ]
 
+dataFormat = [
+    {
+        id: "id gejala",
+        nama: "nama gejala",
+        deskripsi: "deskripsi gejala",
+        gambar: "link gambar (string)",
+        pertanyaan: "(string)",
+        respon_iya: "Iya",
+        respon_tidak:"Tidak"
+    }
+]
+
+
 router.get('/', (req, res) => {
     res.send(dataFormat);
 });

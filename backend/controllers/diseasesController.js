@@ -53,58 +53,75 @@ exports.addDocumentDisease = async (req, res) => {
 
     const diseaseRef = await db.collection('diseases').doc(id);
     const doc = await diseaseRef.get();
-    
-    if(doc.exists){
+
+    if (doc.exists) {
         res.send('Tidak dapat menambahkan data karena sudah ada, gunakan patch');
     }
 
-    else if (nama == undefined&&deskripsi == undefined&&rekomendasi_1==undefined&&gambar==undefined,
-        rekomendasi_2==undefined,rekomendasi_3==undefined,rekomendasi_4==undefined,rekomendasi_5==undefined,
-        rekomendasi_6==undefined) {
+    else if (nama == undefined && deskripsi == undefined && rekomendasi_1 == undefined && gambar == undefined,
+        rekomendasi_2 == undefined, rekomendasi_3 == undefined, rekomendasi_4 == undefined, rekomendasi_5 == undefined,
+        rekomendasi_6 == undefined) {
         console.log('Format Salah!');
         res.send(dataFormat);
     }
-    else{
+    else {
         await docRef.set({
-            id:id,
-            nama:nama,
-            gambar:gambar,
-            rekomendasi_1:rekomendasi_1,
-            rekomendasi_2:rekomendasi_2,
-            rekomendasi_3:rekomendasi_3,
-            rekomendasi_4:rekomendasi_4,
-            rekomendasi_5:rekomendasi_5,
-            rekomendasi_6:rekomendasi_6
+            id: id,
+            nama: nama,
+            gambar: gambar,
+            deskripsi: deskripsi,
+            rekomendasi_1: rekomendasi_1,
+            rekomendasi_2: rekomendasi_2,
+            rekomendasi_3: rekomendasi_3,
+            rekomendasi_4: rekomendasi_4,
+            rekomendasi_5: rekomendasi_5,
+            rekomendasi_6: rekomendasi_6
         });
         res.send(`Penyakit ${nama} sudah ditambahkan ke database!`);
     }
 }
 
-exports.updateDocumentDisease = async(req, res)=>{
+exports.updateDocumentDisease = async (req, res) => {
     const { id } = req.params;
     const diseaseRef = await db.collection('diseases').doc(id);
     const doc = await diseaseRef.get();
-    if(doc.exists){
-        const {nama, deskripsi, gambar, rekomendasi_1, rekomendasi_2, rekomendasi_3, rekomendasi_4, rekomendasi_5,
-        rekomendasi_6} = req.body;
+    if (doc.exists) {
+        const { nama, deskripsi, gambar, rekomendasi_1, rekomendasi_2, rekomendasi_3, rekomendasi_4, rekomendasi_5,
+            rekomendasi_6 } = req.body;
 
-        if(nama){
-            await diseaseRef.update({nama:nama});
+        if (nama) {
+            await diseaseRef.update({ nama: nama });
         }
 
-        if(deskripsi){
-            await diseaseRef.update({deskripsi:deskripsi});
+        if (deskripsi) {
+            await diseaseRef.update({ deskripsi: deskripsi });
         }
 
         if (gambar) {
             await diseaseRef.update({ deskripsi: deskripsi });
         }
 
-
-
+        if (rekomendasi_1) {
+            await diseaseRef.update({ rekomendasi_1: rekomendasi_1 });
+        }
+        if (rekomendasi_2) {
+            await diseaseRef.update({ rekomendasi_2: rekomendasi_2 });
+        }
+        if (rekomendasi_3) {
+            await diseaseRef.update({ rekomendasi_3: rekomendasi_3 });
+        }
+        if (rekomendasi_4) {
+            await diseaseRef.update({ rekomendasi_4: rekomendasi_4 });
+        }
+        if (rekomendasi_5) {
+            await diseaseRef.update({ rekomendasi_5: rekomendasi_5 });
+        }
+        if (rekomendasi_6) {
+            await diseaseRef.update({ rekomendasi_6: rekomendasi_6 });
+        }
         res.send(`Update pada penyakit dengan ID ${id} berhasil!`);
     }
-    else{
+    else {
         res.send(`Data Penyakit dengan ID ${id} tidak terdapat di database!`);
     }
 }
