@@ -4,14 +4,16 @@ const diseasesController = require('../controllers/diseasesController');
 
 dataFormat = [
     {
-        id : "id penyakit (string)",
+        id: "id penyakit (string)",
         nama: "nama penyakit (string)",
-        deskripsi : "deskripsi penyakit (string)",
-        gambar : "link gambar (string)",
-        rekomendasi_1 : "(string)",
-        rekomendasi_2 : "(string)",
-        rekomendasi_3 : "(string)",
-        rekomendasi_4 : "(string)"
+        deskripsi: "deskripsi penyakit (string)",
+        gambar: "link gambar (string)",
+        rekomendasi_1: "(string)",
+        rekomendasi_2: "(string)",
+        rekomendasi_3: "(string)",
+        rekomendasi_4: "(string)",
+        rekomendasi_5: "(string)",
+        rekomendasi_6: "(string)"
     }
 ]
 
@@ -20,5 +22,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', diseasesController.getDocumentDisease);
+
+router.post('/220901/:id', diseasesController.addDocumentDisease);
+
+router.patch('/220901/:id', diseasesController.updateDocumentDisease);
 
 module.exports = router;
