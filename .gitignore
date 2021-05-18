@@ -4355,3 +4355,4 @@ backend/node_modules/yocto-queue/index.js
 backend/node_modules/yocto-queue/license
 backend/node_modules/yocto-queue/package.json
 backend/node_modules/yocto-queue/readme.md
+model/.ipynb_checkpoints/desease_prediction-checkpoint.ipynb
