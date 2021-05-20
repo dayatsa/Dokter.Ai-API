@@ -1,11 +1,15 @@
-const express = reqire('express');
+const express = require('express');
 const router = express.Router();
 const questionController = require('../controllers/questionController');
 
-dataFormat = [
-    {
-        user_id: "id penyakit (string)",
-        symptoms: "nama penyakit (string)",
-        respond: "1:yes, 0:no",
-    }
-]
+
+
+router.get('/',questionController.getRequestRespondFormat);
+router.get('/reset/:user_id',questionController.resetQuestion);
+router.get('/set/:user_id/:symptom_id',questionController.setQuestion);
+router.get('/get/:user_id',questionController.getQuestion);
+
+
+module.exports = router;
+
+

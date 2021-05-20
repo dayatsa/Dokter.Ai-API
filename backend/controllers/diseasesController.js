@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('../private_key/key_day.json');
+const serviceAccount = require('../private_key/key.json');
 
 dataFormat = [
     {
@@ -16,10 +16,10 @@ dataFormat = [
     }
 ]
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-});
-
+if (admin.apps.length === 0) {
+    admin.initializeApp({credential: admin.credential.cert(serviceAccount)});
+  }
+  
 const db = admin.firestore();
 
 exports.getDocumentDisease = async (req, res) => {
