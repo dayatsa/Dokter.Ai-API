@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-{
-  "type": "service_account",
-  "project_id": "coba2-13a4d",
-  "private_key_id": "42ea4645088b90a19950a61cabce437474d2c329",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCUI/WkDLFVQNm+\nGjkztVvczv3D2FVrNDlfRz9hnxip/UlbYmUzMUTXPvb2QOfQ5g/fI7u7iqBiUCvH\nR/rVL/o1oRMxeckaW41mOAWXGVK/xP5nhxtspeWxjPTCGxa3ytRE1PtekUUVoWty\nPHcXuJEbMxZC73B1tN4SP0woKzJYV5VCKG3U2zT9l78qKnnDaGQ6m3uOc4pb4p1G\noPgvqZo6JgAv9T1EfOt4k0+qtKloE55pmocg2e8JOnPG2C5TiCl9uZnBZtlleH/9\nNG9Q5n6l/3wvyP7jsSZyn8yBSAun3Owb6Rq6soI0hdcZDkO34CkbNcEhIf0rIv/4\nxomYw27hAgMBAAECggEAAI5/CIoEq4+WEd0K3HsguHxtnywDrCay1X0Qy6bbop3h\nRe7hdvcHLXDe4C9/v3zxz9KUTMDZV+05sOLAGkd3Hvb3Ob8dppPz/M+Wk8oEUdSl\naRGspHSeH5PqQoV0CSZBtG2BcUpF8m4cF36LKwNmRi4jtgYsy8Btei+TM25wHr1a\nC0bRIt6y3uwEayPOFmugZopDxFN+BM4wFsP+jzC47KeJOKKs+MrkXhrjA8HVOsv7\nyDuffitk0cK0axketJorlqbnbfxbQXpS322LUXXwuUPm0JzHpQj2BzmjEXF+XjtV\nPX2AdpHeDs5YxZe5Eix9XbIlycSIDexcdlKm8pbiAQKBgQDF32/rcMrhz3ysSaeQ\nd2XZo+K172qSq2V4WLiI2OysnNrKe77HCTqymZiUrPnWr9+4Cde0U3Yzt1HmfeRj\nn4boH3t4IBqQ/Ls53uYhU1Cndr6zORHMo8jI7STSGAne80lrgMw2e2B978Z1LUOZ\nXL6S6aYp5TUuZ6y9D+/yV4VboQKBgQC/qISeyRN0D9BjisW6imw/C4EYLKuQuFS1\nvb15SGkfH4tGKMEi1ky2JSW/x5HF2YIMGCCsCIEcnxK6tlRrFuU/eUepq+qR324p\nAhAxZYksejvDfcOp/tK6XxqCxjjprVmS+4sjEX6WJrLTj0XydInDvibeRj+j7WS1\nEtKry69LQQKBgDyFW8kKZbNtb/eOS6cfLdLEkpoNEW6s58tIb6DDoJgnHbBi6vYb\nt41a91U6Fux4PJggwo4QHQ4yWuWByfJCn9OtlWkngJiqBGXt7DtzLS8bXbaZlP0f\nd1ElX2a3HYXIqcMs0Mk1MU0zomLCpnNo740l08Hqrjp0UVw+XKil5k8hAoGBAKD6\nZFoSPfqwBbJ2Ltodxgm2Gfo6Guh1SwFTmz+xaEox7oNBW+ds5AXhcbGBaJkrtiV+\nZoLYqclmew7Ecmd4VZlYvq5urZlUd2yORReYVv06tdPfYGb6l/jeRKAu6kKrzZ69\nFQKhgReQ7YbwwimBZO06W986Vd3UWVAVvUl6zYOBAoGBAJyI9hMY3jVhF3nSpdbA\nmCA4fkyR9LRIv8XdweG5K4w/DjqlBfCWtIVFwvqikByiwqmJobSq28+rQNDIyBIR\nb1BSpsUXf5JUEOpVbTq6a++6A8s0CXZzsYdDH7T01OeC1oMFpwu9weW6MfmnajLb\n4tOr2s6KtycYEI2su53Y/Onp\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-vjl31@coba2-13a4d.iam.gserviceaccount.com",
-  "client_id": "116520828817108233372",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-vjl31%40coba2-13a4d.iam.gserviceaccount.com"
-}
-=======
 {
   "type": "service_account",
   "project_id": "dokterai",
@@ -24,4 +10,3 @@
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-besfe%40dokterai.iam.gserviceaccount.com"
 }
->>>>>>> a7dbafbed03e3842b8ae8594966ad191933c57b8
