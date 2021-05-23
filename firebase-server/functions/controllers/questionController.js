@@ -1,5 +1,6 @@
 const admin = require("firebase-admin");
 
+
 if (admin.apps.length === 0) {
   admin.initializeApp();
 }
@@ -24,6 +25,40 @@ const db = admin.firestore();
 exports.getRequestRespondFormat = async (req, res) => {
   res.send("Connection to question tree database successful!");
 };
+
+
+exports.createDiseases = async (req, res) => {
+  const {DiseasesID} = req.params;
+  const docRef = db.collection("diseases_id").doc(DiseasesID);
+  const symptoms = req.body.symptoms_id;
+  if (docRef.exists) {
+    res.send("Tidak dapat menambahkan data karena sudah ada, gunakan patch");
+  } else if (symptoms == undefined) {
+    res.send("JSON Format is Wrong!");
+  } else {
+    await docRef.set({
+      symptoms_id: symptoms,
+    });
+    res.send(`Deseases ID ${DiseasesID} has added to database!`);
+  }
+};
+
+exports.createSymptoms = async (req, res) => {
+  const {SymptomsID} = req.params;
+  const docRef = db.collection("symptoms_id").doc(SymptomsID);
+  const diseases = req.body.diseases_id;
+  if (docRef.exists) {
+    res.send("Tidak dapat menambahkan data karena sudah ada, gunakan patch");
+  } else if (diseases == undefined) {
+    res.send("JSON Format is Wrong!");
+  } else {
+    await docRef.set({
+      diseases_id: diseases,
+    });
+    res.send(`Symptoms ID ${SymptomsID} has added to database!`);
+  }
+};
+
 
 exports.resetQuestion = async (req, res) => {
   const {userID} = req.params;
@@ -51,7 +86,7 @@ exports.setQuestion = async (req, res) => {
   const docRef = db.collection("question_user").doc(userID);
   const symptomIdRef = await db.collection("symptoms_id").doc(symptomID);
   const symptomsIdData = await symptomIdRef.get();
-  const arrayDeseasesID = symptomsIdData.data().deseases_id;
+  const arrayDeseasesID = symptomsIdData.data().diseases_id;
 
   // Get all symptoms related to first symptom
   let questionId = [];
@@ -70,7 +105,7 @@ exports.setQuestion = async (req, res) => {
   await docRef.update({question: questionId});
   await docRef.update({sizeQuestion: questionId.length});
 
-  res.send(`Set Question for User ID ${userID} Successful!`);
+  res.send(`Set Question for User ID ${userID} and ${symptomID} Successful!`);
 };
 
 exports.getQuestion = async (req, res) => {
@@ -83,11 +118,12 @@ exports.getQuestion = async (req, res) => {
   const arrayQuestion = docData.data().question;
 
   let questionID; let resultState; let diseaseID;
-  if (index != sizeQuestion) {
+  if (index < sizeQuestion) {
     questionID = arrayQuestion[index];
     resultState = 0;
     diseaseID = 0;
   } else {
+    // Program Machine Learning
     questionID = 0;
     resultState = 1;
     diseaseID = 99;
