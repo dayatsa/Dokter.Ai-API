@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', symptomsController.getDocumentSymptom);
+router.get('/getall', symptomsController.getDocumentAllDisease);
 
 router.post('/220901/:id', symptomsController.addDocumentSymptom);
 

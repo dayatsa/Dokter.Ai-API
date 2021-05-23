@@ -86,7 +86,6 @@ exports.getQuestion = async (req, res) => {
 
     let questionID, result_state, disease_id;
     if (index != sizeQuestion) {
-        console.log('test');
         questionID = arrayQuestion[index];
         result_state = 0;
         disease_id = 0;

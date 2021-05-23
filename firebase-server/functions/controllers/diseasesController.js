@@ -23,6 +23,7 @@ exports.getDocumentDisease = async (req, res) => {
   const doc = await diseaseRef.get();
   if (!doc.exists) {
     console.log(`No Disease Document ID : ${id}`);
+    res.send(`No Disease Document ID : ${id}`);
   } else {
     console.log("Document Data", doc.data());
     res.send(doc.data());
@@ -45,8 +46,7 @@ exports.addDocumentDisease = async (req, res) => {
     res.send("Tidak dapat menambahkan data karena sudah ada, gunakan patch");
   } else if (name == undefined && description == undefined &&
     image==undefined && recomendation == undefined) {
-    console.log("Format Salah!");
-    res.send("Format JSON Wrong!");
+    res.send("JSON Format is Wrong!");
   } else {
     await docRef.set({
       id: id,

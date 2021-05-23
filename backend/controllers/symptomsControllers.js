@@ -17,6 +17,17 @@ if (admin.apps.length === 0) {
 
 const db = admin.firestore();
 
+exports.getDocumentAllDisease = async (req, res)=>{
+    const documentDeseaseAll = [];
+    const deseaseRef = await db.collection("diseases").get();
+    let i = 0;
+    deseaseRef.forEach((doc) => {
+      documentDeseaseAll[i] = doc.data();
+      i++;
+    });
+    res.send(documentDeseaseAll);
+  };
+
 exports.getDocumentSymptom = async (req, res) => {
     const { id } = req.params;
     const symptomRef = await db.collection('symptoms').doc(id);
@@ -33,7 +44,6 @@ exports.getDocumentSymptom = async (req, res) => {
 exports.addDocumentSymptom = async (req, res) => {
     const { id } = req.params;
     const docRef = db.collection('symptoms').doc(id);
-    const diseases_param = req.body;
     const nama = req.body.nama;
     const deskripsi = req.body.deskripsi;
     const gambar = req.body.gambar;
