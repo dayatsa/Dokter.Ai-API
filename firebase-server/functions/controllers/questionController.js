@@ -1,10 +1,15 @@
 const admin = require("firebase-admin");
-
+const tf = require("@tensorflow/tfjs-node");
 
 if (admin.apps.length === 0) {
-  admin.initializeApp();
+  admin.initializeApp({
+    storageBucket: "dokterai-917bb.appspot.com",
+  });
 }
+
 const db = admin.firestore();
+const path = require("path");
+const os = require("os");
 
 // sendToDBFormat = [
 //   {
@@ -41,6 +46,18 @@ exports.createDiseases = async (req, res) => {
     });
     res.send(`Deseases ID ${DiseasesID} has added to database!`);
   }
+};
+
+exports.setSymptoms = async (req, res) => {
+  const {userID} = req.params;
+  const symptomsID = req.body.symptoms_id;
+  const response = req.body.response;
+  const docRef = await db.collection("question_user").doc(userID);
+  const docData = await docRef.get();
+  const arrayFeatures = docData.data().symptomsData;
+  arrayFeatures[parseInt(symptomsID)] = response;
+  await docRef.update({symptomsData: arrayFeatures});
+  res.send(`Set Value Symptoms ID ${symptomsID} sucessfull!`);
 };
 
 exports.createSymptoms = async (req, res) => {
@@ -116,17 +133,40 @@ exports.getQuestion = async (req, res) => {
   const index = docData.data().currentIndex;
   const sizeQuestion = docData.data().sizeQuestion;
   const arrayQuestion = docData.data().question;
+  const arrayFeatures = docData.data().symptomsData;
 
   let questionID; let resultState; let diseaseID;
+
+  let resultValues = 0;
   if (index < sizeQuestion) {
     questionID = arrayQuestion[index];
     resultState = 0;
-    diseaseID = 0;
+    diseaseID = -1;
   } else {
-    // Program Machine Learning
+    for (let i = 0; i<arrayFeatures.length; i++) {
+      if (arrayFeatures[i]==2) {
+        arrayFeatures[i]=0;
+      }
+    }
+    await docRef.update({symptomsData: arrayFeatures});
+    const tempJSONPath = path.join(os.tmpdir(), "model2.json");
+    const modelPath = "file://" + tempJSONPath;
+    const model = await tf.loadLayersModel(modelPath);
+    const predictions = model.predict(tf.tensor([arrayFeatures])).dataSync();
+    let resultIndex = 0;
+    for (let i = 0; i<predictions.length; i++) {
+      if (predictions[i]>resultValues) {
+        resultIndex = i;
+        resultValues = predictions[i];
+      }
+    }
+    const mapDisesase = [36, 6, 37, 24, 1, 35, 9, 12, 16, 3, 26, 17, 7, 28, 4,
+      0, 2, 8, 29, 20, 21, 22, 23, 10, 32, 33, 31, 40, 14, 15, 11, 34, 13, 5,
+      27, 39, 25, 18, 38, 30, 19];
+
     questionID = 0;
     resultState = 1;
-    diseaseID = 99;
+    diseaseID = mapDisesase[resultIndex];
   }
 
   const packetData = [
@@ -134,6 +174,7 @@ exports.getQuestion = async (req, res) => {
       question_id: questionID.toString(),
       result_state: resultState,
       disease_id: diseaseID,
+      probability: resultValues,
     },
   ];
 
